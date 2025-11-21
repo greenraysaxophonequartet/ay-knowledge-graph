@@ -1,0 +1,302 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ex: <http://example.org/music-event/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix schema: <http://schema.org/> .
+
+# --- クラス定義 (エンティティの型) ---
+
+ex:MusicalGroup a rdfs:Class ;
+    rdfs:label "音楽グループ"@ja .
+
+ex:Event a rdfs:Class ;
+    rdfs:label "イベント"@ja .
+
+ex:EventPart a rdfs:Class ;
+    rdfs:label "イベントパート"@ja .
+
+ex:Song a rdfs:Class ;
+    rdfs:label "曲"@ja .
+
+ex:Score a rdfs:Class ;
+    rdfs:label "楽譜"@ja .
+
+ex:Plan a rdfs:Class ;
+    rdfs:label "計画・提案"@ja .
+
+ex:ConsultationPoint a rdfs:Class ;
+    rdfs:label "相談事項"@ja .
+
+ex:AdjustmentDetail a rdfs:Class ;
+    rdfs:label "調整詳細"@ja .
+
+ex:Stance a rdfs:Class ;
+    rdfs:label "スタンス"@ja .
+
+ex:Concern a rdfs:Class ;
+    rdfs:label "懸念事項"@ja .
+
+ex:Action a rdfs:Class ;
+    rdfs:label "アクション"@ja .
+
+# --- 述語定義 (関係性) ---
+
+ex:organizes a rdf:Property ;
+    rdfs:label "主催する"@ja .
+
+ex:performs a rdf:Property ;
+    rdfs:label "演奏する"@ja .
+
+ex:collaboratesWith a rdf:Property ;
+    rdfs:label "コラボレーションする"@ja .
+
+ex:proposes a rdf:Property ;
+    rdfs:label "提案する"@ja .
+
+ex:includes a rdf:Property ;
+    rdfs:label "含む"@ja .
+
+ex:candidateFor a rdf:Property ;
+    rdfs:label "～の候補である"@ja .
+
+ex:selectedSong a rdf:Property ;
+    rdfs:label "選択された曲"@ja .
+
+ex:rejectedSong a rdf:Property ;
+    rdfs:label "見送られた曲"@ja .
+
+ex:usesScore a rdf:Property ;
+    rdfs:label "楽譜を使用する"@ja .
+
+ex:arranger a rdf:Property ;
+    rdfs:label "編曲者"@ja .
+
+ex:hasPart a rdf:Property ;
+    rdfs:label "部分を持つ"@ja .
+
+ex:hasParticipant a rdf:Property ;
+    rdfs:label "参加者を持つ"@ja .
+
+ex:storageURL a rdf:Property ;
+    rdfs:label "保管URL"@ja .
+
+ex:referenceURL a rdf:Property ;
+    rdfs:label "参考URL"@ja .
+
+ex:detail a rdf:Property ;
+    rdfs:label "詳細"@ja .
+
+ex:hasStance a rdf:Property ;
+    rdfs:label "スタンスを持つ"@ja .
+
+ex:hasConcern a rdf:Property ;
+    rdfs:label "懸念を持つ"@ja .
+
+ex:relatesTo a rdf:Property ;
+    rdfs:label "～に関連する"@ja .
+
+ex:prefers a rdf:Property ;
+    rdfs:label "～を好む"@ja .
+
+ex:proposesAction a rdf:Property ;
+    rdfs:label "アクションを提案する"@ja .
+
+# --- インスタンス (具体的なデータ) ---
+
+# 組織・グループ
+ex:Familiar a ex:MusicalGroup ;
+    rdfs:label "アンサンブルファミリア吹奏楽団"@ja ;
+    rdfs:comment "文京区・北区エリアを中心に活動する吹奏楽団。アマチュア団体。"@ja ;
+    ex:referenceURL <https://www.instagram.com/ensemble.familiar/> .
+
+ex:GreenRay a ex:MusicalGroup ;
+    rdfs:label "グリーンレイ"@ja ;
+    rdfs:comment "プロフェッショナル・カルテット"@ja ;
+    ex:hasStance ex:GRStanceOverall, ex:GRStanceJounetsu, ex:GRStanceCollaboration2, ex:GRStanceTakarajima, ex:GRStanceBusiness, ex:GRStanceRights ;
+    ex:proposesAction ex:MeetingProposal .
+
+ex:FamiliarKids a ex:MusicalGroup ;
+    rdfs:label "ファミリアキッズ"@ja ;
+    rdfs:comment "ダンス等を披露予定"@ja .
+
+# イベント
+ex:Concert a ex:Event ;
+    rdfs:label "アンサンブルファミリア吹奏楽団 第4回定期演奏会"@ja ;
+    ex:organizes ex:Familiar ;
+    schema:location ex:KawaguchiLiliaHall ;
+    schema:startDate "2026-05-24"^^xsd:date ;
+    ex:hasPart ex:Part1, ex:Part2 .
+
+ex:KawaguchiLiliaHall a schema:Place ;
+    rdfs:label "川口リリア大ホール"@ja .
+
+ex:Part1 a ex:EventPart ;
+    rdfs:label "第1部 (オリジナル)"@ja .
+
+ex:Part2 a ex:EventPart ;
+    rdfs:label "第2部 (ポップスステージ)"@ja ;
+    ex:hasParticipant ex:GreenRay, ex:FamiliarKids ;
+    ex:includes ex:SongStructurePlan .
+
+# 相談事項
+ex:SongSelectionConsultation a ex:ConsultationPoint ;
+    rdfs:label "選曲のご相談"@ja .
+
+ex:OtherConsultation a ex:ConsultationPoint ;
+    rdfs:label "その他のご相談事項"@ja .
+
+# 構成案
+ex:SongStructurePlan a ex:Plan ;
+    rdfs:label "第2部 曲の構成案"@ja ;
+    ex:proposes ex:Performance1, ex:Performance2, ex:Performance3, ex:Performance4 .
+
+ex:Performance1 a ex:Performance ;
+    rdfs:label "① グリーンレイ（カルテット）で1曲"@ja ;
+    ex:performs ex:GreenRay .
+
+ex:Performance2 a ex:Performance ;
+    rdfs:label "② グリーンレイ＋ファミリア：情熱大陸"@ja ;
+    ex:performs ex:GreenRay ;
+    ex:collaboratesWith ex:Familiar ;
+    ex:song ex:JounetsuTairiku .
+
+ex:Performance3 a ex:Performance ;
+    rdfs:label "③ グリーンレイ＋ファミリア：コラボ2曲目"@ja ;
+    ex:performs ex:GreenRay ;
+    ex:collaboratesWith ex:Familiar ;
+    # 修正: アニトラを選択、コナンを見送り
+    ex:selectedSong ex:AnitrasDance ;
+    ex:rejectedSong ex:ConanTheme .
+
+ex:Performance4 a ex:Performance ;
+    rdfs:label "④ アンコール：グリーンレイ＋ファミリア：宝島"@ja ;
+    ex:performs ex:GreenRay ;
+    ex:collaboratesWith ex:Familiar ;
+    ex:song ex:Takarajima .
+
+# 曲、楽譜、調整
+ex:JounetsuTairiku a ex:Song ;
+    rdfs:label "情熱大陸"@ja ;
+    ex:usesScore ex:JounetsuIshigeScore, ex:JounetsuGreenRayScore ;
+    ex:adjustmentDetail ex:JounetsuTairikuAdjustment .
+
+ex:JounetsuIshigeScore a ex:Score ;
+    rdfs:label "情熱大陸 (石毛里佳編曲 吹奏楽譜)"@ja ;
+    ex:arranger "石毛里佳"@ja ;
+    ex:storageURL <https://drive.google.com/drive/folders/1Fzjyt2OfO-palBro-BWAUDAV9IfX9lge> ;
+    ex:referenceURL <https://youtu.be/9Sz7sNodBrc> .
+
+ex:JounetsuGreenRayScore a ex:Score ;
+    rdfs:label "情熱大陸 (グリーンレイ版)"@ja ;
+    ex:referenceURL <https://youtu.be/xuQqOP3jvOc> .
+
+ex:JounetsuTairikuAdjustment a ex:AdjustmentDetail ;
+    rdfs:label "情熱大陸の調整内容"@ja ;
+    ex:detail "1. テンポ早くなってから...グリーンレイ版前奏８小節 vs 石毛版打楽器４小節＋前奏A１６小節 -> アンサンブルに 12小節休んでもらう形で調整"@ja ;
+    ex:detail "2. ソロの部分が16小節長い -> ソロ和声を確認し、単純に倍にして大丈夫かどうか確認"@ja ;
+    ex:detail "3. グリーンレイ版はソロからメロディB' vs 石毛版はC -> 石毛版B'に飛ぶようにして調整可能か確認"@ja ;
+    ex:detail "4. ラスト...グリーンレイ版Aを８小節でCoda1小節 vs 石毛版Aを４小節＋アレンジ４小節＋coda1小節 -> アレンジカットおよびCodaの和声リズム変更で対応可能か確認"@ja .
+
+ex:AnitrasDance a ex:Song ;
+    rdfs:label "アニトラの踊り"@ja ;
+    rdfs:comment "中間部にアドリブソロあり。グリーンレイにて対応可能。"@ja ;
+    ex:usesScore ex:AnitraNewSoundsScore ;
+    ex:referenceURL <https://youtu.be/YeXiK_gfA6A?si=UZDnOMDxMmW2OUsl> .
+
+ex:AnitraNewSoundsScore a ex:Score ;
+    rdfs:label "アニトラの踊り (ニューサウンズ譜)"@ja ;
+    rdfs:comment "改変不要でコラボ可能"@ja ;
+    ex:storageURL <https://drive.google.com/drive/folders/1C6hcPuVDcBytGOgbUA8BXJMdO7ybQAtq> .
+
+ex:ConanTheme a ex:Song ;
+    rdfs:label "コナン"@ja ;
+    ex:usesScore ex:ConanWindsScore, ex:ConanGreenRayScore .
+
+ex:ConanWindsScore a ex:Score ;
+    rdfs:label "コナン (ウィンズスコア譜)"@ja ;
+    ex:storageURL <https://drive.google.com/drive/folders/1JQhUIefRe8K3gPgzOjkisTVtBLBVe2IR> ;
+    ex:referenceURL <https://youtu.be/m3HFw6eYdQ0?si=9ixegYXVMy7bj0g-> .
+
+ex:ConanGreenRayScore a ex:Score ;
+    rdfs:label "コナン (グリーンレイ版)"@ja ;
+    ex:referenceURL <https://youtu.be/I84vLDgz5qw?si=Spzcw0RYe-Z78Yx9> .
+
+ex:Takarajima a ex:Song ;
+    rdfs:label "宝島"@ja ;
+    ex:usesScore ex:TakarajimaQuartetScore, ex:TakarajimaWindScore ;
+    ex:referenceURL <https://youtu.be/GEuhbWPsVSk?si=DrDnNsYbohchk5hp> .
+
+ex:TakarajimaQuartetScore a ex:Score ;
+    rdfs:label "宝島 (カルテット版)"@ja .
+
+ex:TakarajimaWindScore a ex:Score ;
+    rdfs:label "宝島 (吹奏楽譜)"@ja ;
+    rdfs:comment "尺調整はグリーンレイとして問題なし"@ja .
+
+
+# --- グリーンレイのスタンス詳細 (更新) ---
+
+ex:GRStanceOverall a ex:Stance ;
+    rdfs:label "GRスタンス: 全体"@ja ;
+    ex:relatesTo ex:Concert ;
+    ex:detail "出演自体には前向き (OK)"@ja ;
+    ex:detail "提案曲数 (カルテット1, コラボ2, アンコール1) は適切 (OK)"@ja ;
+    ex:detail "ポップスステージの企画意図に共感 (OK)"@ja .
+
+ex:GRStanceJounetsu a ex:Stance ;
+    rdfs:label "GRスタンス: 情熱大陸"@ja ;
+    ex:relatesTo ex:JounetsuTairiku ;
+    ex:detail "コラボは希望するが、楽譜改変プロセスに強い懸念あり"@ja ;
+    ex:hasConcern ex:ScoreModificationConcern .
+
+ex:GRStanceCollaboration2 a ex:Stance ;
+    rdfs:label "GRスタンス: コラボ曲2"@ja ;
+    ex:relatesTo ex:Performance3 ;
+    ex:prefers ex:AnitrasDance ; # アニトラを確定希望
+    ex:detail "アニトラを選択。楽譜改変が不要であり、スムーズに進行可能。"@ja ;
+    ex:detail "コナンは見送り。調整工数とリスクが未知数のため。"@ja .
+
+ex:GRStanceTakarajima a ex:Stance ;
+    rdfs:label "GRスタンス: 宝島"@ja ;
+    ex:relatesTo ex:Takarajima ;
+    ex:detail "楽譜所持や尺調整に関して特に問題としない (承認)"@ja .
+
+ex:GRStanceBusiness a ex:Stance ;
+    rdfs:label "GRスタンス: ビジネス面・PoC"@ja ;
+    ex:relatesTo ex:Concert ;
+    ex:detail "本件をビジネス的な「PoC (概念実証)」として位置づける。"@ja ;
+    ex:detail "今後の商品価値創出の参考とする。"@ja ;
+    ex:detail "ディスブランディング回避のため、クオリティと権利関係を重視。"@ja ;
+    ex:detail "出演料等は少額でも授受し、プロ/アマの立場を明確化する。"@ja .
+
+ex:GRStanceRights a ex:Stance ;
+    rdfs:label "GRスタンス: 権利関係"@ja ;
+    ex:relatesTo ex:Concert ;
+    ex:detail "演奏動画をグリーンレイのYouTubeチャンネルで公開希望。"@ja ;
+    ex:hasConcern ex:ScoreModificationConcern .
+
+# --- 懸念事項詳細 (更新・強化) ---
+
+ex:ScoreModificationConcern a ex:Concern ;
+    rdfs:label "懸念: 楽譜の改変と権利リスク"@ja ;
+    ex:relatesTo ex:JounetsuTairiku ;
+    rdfs:comment "最大のイシュー"@ja ;
+    ex:detail "提案されている調整（構成変更、ソロ延長）が、著作権法上の「編曲（改変）」に該当する可能性が高い。"@ja ;
+    ex:detail "プロとして「権利者に無許諾での楽譜改変」は推奨しかねるスタンスである。"@ja ;
+    ex:detail "ファミリア（アマチュア）とグリーンレイ（プロ）間で、この「権利」に関する認識（スキーマ）にズレがある仮説を持つ。"@ja ;
+    ex:detail "調整工数の肥大化を懸念。"@ja .
+
+ex:ConanConcern a ex:Concern ;
+    rdfs:label "懸念: コナン (採用見送り理由)"@ja ;
+    ex:relatesTo ex:ConanTheme ;
+    ex:detail "楽譜改変に伴う調整工数と著作権リスクが未知数であるため回避。"@ja .
+
+# --- アクションプラン (新規) ---
+
+ex:MeetingProposal a ex:Action ;
+    rdfs:label "ミーティングの提案"@ja ;
+    ex:proposesTo ex:Familiar ;
+    ex:relatesTo ex:ScoreModificationConcern, ex:GRStanceBusiness ;
+    ex:detail "目的: 楽譜の扱い（権利と工数）に関する認識（スキーマ）のすり合わせ。"@ja ;
+    ex:detail "目的: 出演料や動画配信などビジネス面の確認。"@ja ;
+    ex:detail "候補日時: 10/27(月), 10/28(火), 10/29(水)"@ja .
