@@ -5,44 +5,21 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 ##################################################################
-# AY-Knowledge-Graph: Root Index
-# ここは世界の「目次」です。すべての知識はここから始まります。
+# AY-Knowledge-Graph: Root Index (Auto-Generated)
+# このファイルは scripts/generate_index.py によって自動生成されています。
+# 手動で編集しても上書きされるためご注意ください。
 ##################################################################
 
 ex:GraphRAGIndex a rdfs:Class ;
     rdfs:label "AY Knowledge Graph Root Index" ;
     rdfs:comment "知識グラフのルート。ここから各領域の知識へリンクします。" .
 
-# --- メイングラフの定義 ---
+ex:GraphRAG a rdfs:Class ; rdfs:label "知識領域" .
+ex:Project a rdfs:Class ; rdfs:label "プロジェクト" .
+ex:InboxItem a rdfs:Class ; rdfs:label "未整理アイテム" .
 
-# 1. あなた自身に関する知識グラフ
-ex:ProfileGraph a ex:GraphRAG ;
-    rdfs:label "管理者プロフィール" ;
-    ex:domain "Personal" ;
-    # ここ重要！GitHub上のパスを指定しています
+# --- Domain Knowledge (GraphRAG) ---
+
+ex:MeNode a ex:GraphRAG ;
+    rdfs:label "me (GraphRAG)" ;
     ex:entryFile "knowledge/me.ttl" .
-
-# (将来ここに追加していく)
-# ex:VideoGraph a ex:GraphRAG ;
-#    ex:entryFile "knowledge/video/rules.ttl" .
-
-##################################################################
-# 共通スキーマ定義 (オントロジー)
-# AIに「言葉の意味」を教えるための辞書です
-##################################################################
-
-ex:GraphRAG a rdfs:Class ;
-    rdfs:label "知識領域 (GraphRAG)" .
-
-ex:entryFile a rdf:Property ;
-    rdfs:label "エントリーファイルパス" ;
-    rdfs:comment "この知識領域の詳細が書かれたファイルのパス" .
-
-ex:Project a rdfs:Class ;
-    rdfs:label "プロジェクト" .
-
-ex:Task a rdfs:Class ;
-    rdfs:label "タスク" .
-
-ex:Member a rdfs:Class ;
-    rdfs:label "メンバー" .
