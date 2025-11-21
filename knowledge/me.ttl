@@ -1,1 +1,48 @@
+@prefix ex: <http://example.com/aykg#> .
+@prefix schema: <http://schema.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+##################################################################
+# AY-Knowledge-Graph: Root Index
+# ここは世界の「目次」です。すべての知識はここから始まります。
+##################################################################
+
+ex:GraphRAGIndex a rdfs:Class ;
+    rdfs:label "AY Knowledge Graph Root Index" ;
+    rdfs:comment "知識グラフのルート。ここから各領域の知識へリンクします。" .
+
+# --- メイングラフの定義 ---
+
+# 1. あなた自身に関する知識グラフ
+ex:ProfileGraph a ex:GraphRAG ;
+    rdfs:label "管理者プロフィール" ;
+    ex:domain "Personal" ;
+    # ここ重要！GitHub上のパスを指定しています
+    ex:entryFile "knowledge/me.ttl" .
+
+# (将来ここに追加していく)
+# ex:VideoGraph a ex:GraphRAG ;
+#    ex:entryFile "knowledge/video/rules.ttl" .
+
+##################################################################
+# 共通スキーマ定義 (オントロジー)
+# AIに「言葉の意味」を教えるための辞書です
+##################################################################
+
+ex:GraphRAG a rdfs:Class ;
+    rdfs:label "知識領域 (GraphRAG)" .
+
+ex:entryFile a rdf:Property ;
+    rdfs:label "エントリーファイルパス" ;
+    rdfs:comment "この知識領域の詳細が書かれたファイルのパス" .
+
+ex:Project a rdfs:Class ;
+    rdfs:label "プロジェクト" .
+
+ex:Task a rdfs:Class ;
+    rdfs:label "タスク" .
+
+ex:Member a rdfs:Class ;
+    rdfs:label "メンバー" .
