@@ -24,6 +24,10 @@ ex:MeNode a ex:GraphRAG ;
     rdfs:label "me (GraphRAG)" ;
     ex:entryFile "knowledge/me.ttl" .
 
+ex:FamiriawindsNode a ex:GraphRAG ;
+    rdfs:label "famiriawinds (GraphRAG)" ;
+    ex:entryFile "knowledge/famiriawinds.ttl" .
+
 ex:TestautoNode a ex:GraphRAG ;
     rdfs:label "test_auto (GraphRAG)" ;
     ex:entryFile "knowledge/test_auto.ttl" .
