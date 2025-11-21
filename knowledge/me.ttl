@@ -5,44 +5,29 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 ##################################################################
-# AY-Knowledge-Graph: Root Index
-# ここは世界の「目次」です。すべての知識はここから始まります。
+# Knowledge: あなたのプロフィール
 ##################################################################
 
-ex:GraphRAGIndex a rdfs:Class ;
-    rdfs:label "AY Knowledge Graph Root Index" ;
-    rdfs:comment "知識グラフのルート。ここから各領域の知識へリンクします。" .
+# あなた自身の定義
+ex:Yuppi a ex:Member ;
+    rdfs:label "ゆっぴ" ;
+    schema:role "AY-Knowledge-Graph 管理者", "プロジェクトオーナー" ;
+    schema:description "自分の脳を拡張するために知識グラフを構築中のチャレンジャー。" ;
+    
+    # 今持っている興味・関心
+    ex:interest "GraphRAG", "GitHub連携", "自動化", "動画編集" ;
+    
+    # 今の目標 (Goal)
+    ex:currentGoal ex:Goal_BuildGraph .
 
-# --- メイングラフの定義 ---
+# ゴールの定義
+ex:Goal_BuildGraph a ex:Goal ;
+    rdfs:label "最強の知識ベース構築" ;
+    rdfs:comment "GitHubとChatGPTを連携させて、寝ていても知識が整理される仕組みを作る。" .
 
-# 1. あなた自身に関する知識グラフ
-ex:ProfileGraph a ex:GraphRAG ;
-    rdfs:label "管理者プロフィール" ;
-    ex:domain "Personal" ;
-    # ここ重要！GitHub上のパスを指定しています
-    ex:entryFile "knowledge/me.ttl" .
-
-# (将来ここに追加していく)
-# ex:VideoGraph a ex:GraphRAG ;
-#    ex:entryFile "knowledge/video/rules.ttl" .
-
-##################################################################
-# 共通スキーマ定義 (オントロジー)
-# AIに「言葉の意味」を教えるための辞書です
-##################################################################
-
-ex:GraphRAG a rdfs:Class ;
-    rdfs:label "知識領域 (GraphRAG)" .
-
-ex:entryFile a rdf:Property ;
-    rdfs:label "エントリーファイルパス" ;
-    rdfs:comment "この知識領域の詳細が書かれたファイルのパス" .
-
-ex:Project a rdfs:Class ;
-    rdfs:label "プロジェクト" .
-
-ex:Task a rdfs:Class ;
-    rdfs:label "タスク" .
-
-ex:Member a rdfs:Class ;
-    rdfs:label "メンバー" .
+# 関連するタスク
+ex:Task_Phase1 a ex:Task ;
+    rdfs:label "Phase 1: 手動構築" ;
+    ex:assignedTo ex:Yuppi ;
+    rdfs:comment "まずは手動で ttl ファイルを作って連携テストを行う。" ;
+    ex:status "In Progress" .
