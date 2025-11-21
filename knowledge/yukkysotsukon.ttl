@@ -1,0 +1,475 @@
+@prefix : <http://example.com/yukki-grad#> .
+
+@prefix gr: <http://purl.org/graphrag/core#> .
+
+@prefix s: <http://schema.org/> .
+
+@prefix pv: <http://www.w3.org/ns/prov#> .
+
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+
+
+###############################################################################
+
+# ゆっきー卒業演奏会 マスターナレッジグラフ (統合版 v9.8 - 全文表示)
+
+# 最終更新: 2025-09-02
+
+# -----------------------------------------------------------------------------
+
+# ◎ 変更点：
+
+# - 視聴者タッチポイント計画を完全に統合。
+
+# - 全てのセクションを省略せずに表示。
+
+###############################################################################
+
+
+
+
+
+# =============================================================================
+
+# 0. プロジェクトの核となる定義 (Core Definitions)
+
+# =============================================================================
+
+
+
+:Project_YukkiGraduation a gr:Project ;
+
+s:name "ゆっきー卒業演奏会プロジェクト"@ja ;
+
+gr:hasParticipant :PM_User ;
+
+gr:hasEvent :Event_GraduationConcert ;
+
+gr:hasGoal :Goal_TicketSoldOut, :Goal_PositiveExperience, :Goal_StrengthenRelationships ;
+
+gr:hasPrinciple :Principle_LowBurdenHighQuality, :Principle_NormalConcertChallenge, :Principle_StrategicBalance, :Principle_InformationSharing ;
+
+gr:hasKPI :KPI_TicketSales ;
+
+gr:usesTool :Tool_Asana, :Tool_GoogleDrive, :Tool_KnowledgeUpdaterScript ;
+
+gr:hasPlan :Plan_Communication, :Plan_GachaVideoTemplate, :Plan_LobbyExperience, :Plan_Catering, :Plan_Parking, :Plan_Costume, :Plan_Touchpoint, :Plan_DressingRoomAllocation ;
+
+gr:hasStrategy :Strategy_GuestReveal, :Strategy_Incentive ;
+
+gr:hasRisk :Risk_YukkiChangeOfHeart ;
+
+gr:hasDecision :Decision_ProgramBooklet, :Decision_AdoptPythonWorkflow ;
+
+gr:hasIdea :Idea_PublishScores, :Idea_AfterEvent ;
+
+gr:hasConcern :Concern_ProjectDelay ;
+
+gr:scopeNote "当初は当日の計画立案までだったが、現在はチケット販売後の後処理も並行して担当する。"@ja .
+
+
+
+:Event_GraduationConcert a gr:Concert ;
+
+s:name "ゆっきー卒業コンサート"@ja ;
+
+s:startDate "2025-09-19"^^xsd:date ;
+
+gr:hasConcept :Concept_PositiveGraduation, :Concept_Festival, :Concept_Ceremony .
+
+
+
+# --- Goals, Principles, Concepts ---
+
+:Goal_TicketSoldOut a gr:Goal ; s:name "チケット完売"@ja .
+
+:Goal_PositiveExperience a gr:Goal ; s:name "卒業をポジティブな体験とする"@ja ; gr:targetAudience :Performer_Yukki, "お客様"@ja .
+
+:Goal_StrengthenRelationships a gr:Goal ; s:name "出演者間の関係強化"@ja .
+
+:Principle_LowBurdenHighQuality a gr:Principle ; s:name "演者の当日の低負担・ハイクオリティ"@ja ; s:description "演者が雑務から解放され、演奏に集中できる環境を作る。"@ja .
+
+:Principle_NormalConcertChallenge a gr:Principle ; s:name "「普通の演奏会」形式への挑戦"@ja ; s:description "演出を抑制し、団体活動の新たな指針を探る。"@ja .
+
+:Principle_StrategicBalance a gr:Principle ; s:name "戦略的バランスの原則"@ja ; s:description "事前準備で『祝祭性』を最大化し、当日は『演者の低負担』を優先。予算は祝祭性（演出・宣伝）に重点配分。"@ja .
+
+:Principle_InformationSharing a gr:Principle ; s:name "メンバーとの情報共有の重視"@ja ; s:description "プロジェクトの成功には、メンバー全員が同じ情報を持ち、同じ目標に向かうことが不可欠であるという原則。"@ja .
+
+:Concept_PositiveGraduation a gr:Concept ; s:name "ポジティブな卒業"@ja .
+
+:Concept_Festival a gr:Concept ; s:name "祝祭性"@ja .
+
+:Concept_Ceremony a gr:Concept ; s:name "式典感"@ja .
+
+
+
+# --- KPIs & Metrics ---
+
+:KPI_TicketSales a gr:KPI ;
+
+s:name "チケット販売枚数目標"@ja ;
+
+gr:targetValue 400 ;
+
+gr:secondaryTarget "200枚超え"@ja ;
+
+gr:hasMetric :Metric_TicketSales_20250813, :Metric_TicketSales_20250825, :Metric_TicketSales_20250831 .
+
+
+
+:Metric_TicketSales_20250813 a gr:Metric ; s:name "8月13日時点のチケット販売枚数"@ja ; s:value 99 .
+
+:Metric_TicketSales_20250825 a gr:Metric ; s:name "8月25日時点のチケット販売枚数"@ja ; s:value 143 .
+
+:Metric_TicketSales_20250831 a gr:Metric ; s:name "8月31日時点のチケット販売枚数"@ja ; s:value 161 .
+
+
+
+# --- Concerns ---
+
+:Concern_ProjectDelay a gr:Concern ; s:name "プロジェクト全体の遅延"@ja ; s:description "特に宣伝と、お客様のエンゲージメントを高める施策が遅れている。"@ja .
+
+
+
+# =============================================================================
+
+# 1. 関係者 (People)
+
+# =============================================================================
+
+
+
+:PM_User a s:Person ; s:name "プロジェクト管理者 (あなた)"@ja ; gr:hasRole "総合プロデューサー"@ja ; s:description "最終意思決定者。広報業務を最優先。"@ja .
+
+:Performer_Asumin a s:Person ; s:name "あすみん"@ja ; gr:hasRole "編曲担当者との主要連絡窓口"@ja .
+
+:Performer_Yukki a s:Person ; s:name "ゆっきー"@ja .
+
+:Arranger_Shotaro a s:Person ; s:name "宮本正太郎"@ja ; gr:expectedCost [ a gr:Cost ; s:value 130000 ; s:currency "JPY" ] .
+
+:Staff_Imada a s:Person ; s:name "今田くん"@ja ; gr:hasRole "ステージマネージャー"@ja ; s:description "主業務は受付統括等の顧客対応。ステージ周りは演者誘導と簡易な転換のみ。本番中は舞台袖で進行管理。"@ja .
+
+:Contact_Takahata a s:Person ; s:name "高畠 大貴"@ja ; s:worksFor :Venue_PhiliaHall ; s:email "daiki-takahata@tokyu-com.co.jp" .
+
+:Performer_Mitta a s:Person ; s:name "みった"@ja ; s:memberOf :Group_GreenRay ; gr:playsInstrument "Alto Saxophone"@en .
+
+:Performer_Misuzu a s:Person ; s:name "みすず"@ja ; s:memberOf :Group_GreenRay ; gr:playsInstrument "Baritone Saxophone"@en .
+
+:Performer_Morita a s:Person ; s:name "森田"@ja ; rdfs:comment "Green Ray新メンバー"@ja ; s:memberOf :Group_GreenRay ; gr:playsInstrument "Tenor Saxophone"@en .
+
+:Performer_Shisa a s:Person ; s:name "しーさー"@ja ; s:memberOf :Group_Adam ; gr:playsInstrument "Soprano Saxophone"@en .
+
+:Performer_Daichi a s:Person ; s:name "だいち"@ja ; s:memberOf :Group_Adam ; gr:playsInstrument "Alto Saxophone"@en .
+
+:Performer_Mago a s:Person ; s:name "まご"@ja ; s:memberOf :Group_Adam ; gr:playsInstrument "Tenor Saxophone"@en ; s:description "ゆっきーの皆勤によりGreen Rayへの参加経験なし。これが今回のコンサートのメッセージの一つ。"@ja .
+
+:Performer_Okkun a s:Person ; s:name "おっくん"@ja ; s:memberOf :Group_Adam ; gr:playsInstrument "Baritone Saxophone"@en .
+
+:Performer_Maimai a s:Person ; s:name "まいまい"@ja ; s:memberOf :Group_HIBI ; s:knows :Performer_Asumin ; rdfs:comment "あすみんの高校の後輩"@ja ; gr:playsInstrument "Alto Saxophone"@en .
+
+:Performer_Mana a s:Person ; s:name "まなさん"@ja ; rdfs:comment "サックスyoutuber"@ja ; s:jobTitle "YouTuber" ; gr:playsInstrument "Alto Saxophone"@en .
+
+:Performer_Shimazaki a s:Person ; s:name "嶋崎さん"@ja ; rdfs:comment "打楽器youtuber"@ja ; s:jobTitle "YouTuber" ; gr:playsInstrument "Percussion"@en .
+
+:Group_GreenRay a s:MusicGroup ; s:name "Green Rayサクソフォンカルテット"@ja .
+
+:Group_Adam a s:MusicGroup ; s:name "Adam"@ja .
+
+:Group_HIBI a s:MusicGroup ; s:name "HIBI Chazz-K"@ja .
+
+
+
+
+
+# =============================================================================
+
+# 2. 会場 (Venue)
+
+# =============================================================================
+
+
+
+:Venue_PhiliaHall a s:Place ; s:name "フィリアホール (横浜市青葉区民文化センター)"@ja .
+
+
+
+
+
+# =============================================================================
+
+# 3. 戦略・計画 (Strategies & Plans)
+
+# =============================================================================
+
+
+
+:Strategy_GuestReveal a gr:Strategy ; s:name "ゲスト発表順戦略"@ja ; s:description "Green Ray → ゆっきー → Adam(マゴ以外) → まいまい → マナ → 嶋崎 → マゴ。期待感の維持が目的。"@ja .
+
+:Strategy_Incentive a gr:Strategy ; s:name "出演者向け広報インセンティブ（大入り制度）"@ja ; s:description "損益分岐点200枚。以降50枚（または10枚）達成毎に全出演者へ一律ボーナス支給（例: 250枚で+5000円）。『広報キット』提供により自発的協力を促す。アナウンスは損益分岐点を超えてから。"@ja .
+
+:Plan_GachaVideoTemplate a gr:Plan ; s:name "【動画制作計画】ガチャ風ゲスト発表テンプレート"@ja ; s:description "ソシャゲのガチャ風演出（15〜20秒）のショート動画制作計画。内外から好評。"@ja .
+
+:Plan_LobbyExperience a gr:Plan ; s:name "開演前ロビー体験構想"@ja ; s:description "メッセージ展示やキービジュアル大型パネル設置により「式典感」を演出。"@ja ; gr:status :statusAmber .
+
+:Plan_Catering a gr:Plan ; s:name "ケータリング計画"@ja ; s:description "昼食はオリジン弁当、夕食は建物内の弁当屋で手配する。"@ja .
+
+:Plan_Parking a gr:Plan ; s:name "駐車場利用計画"@ja ; s:description """- **リハ日(9/9):** 11時頃から利用可。嶋崎さんの車は終日駐車。\n- **本番日(9/19):** 10時以降なるべく早く開けてもらう。\n- **制約:** 奥行き5mのため、大型車は不可。"""@ja .
+
+:Plan_Costume a gr:Plan ; s:name "衣装プラン"@ja ; s:description "前半（小編成アンサンブル）は緑フォーマル、後半（大編成）は黒黒フォーマルとする。"@ja .
+
+:Plan_DressingRoomAllocation a gr:Plan ; s:name "楽屋割り当て計画"@ja ; s:description "楽屋1:ゆっきー, 楽屋2:島崎さん, 楽屋3:まいまいとまなさん, 楽屋4:ADAM, 楽屋5:ぐりんれい" .
+
+:Plan_Touchpoint a gr:Plan ;
+
+s:name "視聴者タッチポイント計画"@ja ;
+
+s:description "SNS、動画、リアルイベントを組み合わせた統合的な広報・エンゲージメント計画。"@ja ;
+
+gr:hasPart :Touchpoint_SNS_20250830, :Touchpoint_SNS_20250831, :Touchpoint_SNS_20250901, :Touchpoint_SNS_20250906,
+
+:Touchpoint_Video_20250901, :Touchpoint_Video_20250908, :Touchpoint_Video_20250915 .
+
+
+
+
+
+# =============================================================================
+
+# 4. リスクと対策 (Risks & Mitigations)
+
+# =============================================================================
+
+
+
+:Risk_YukkiChangeOfHeart a gr:Risk ; s:name "突然のゆっきーの気変わり"@ja ; s:description "主役ゆっきーのモチベーション低下や意向変化は、プロジェクトの最大リスク。"@ja ; gr:impactLevel "Critical" ; gr:hasMitigationPlan :Mitigation_YukkiCommunication .
+
+:Mitigation_YukkiCommunication a gr:MitigationPlan ; s:name "ゆっきーとの継続的コミュニケーション"@ja ; gr:status "In Progress" ; s:description "1on1で誤解解消済み。今後も密な進捗報告と、必要に応じた対話を継続する。"@ja .
+
+
+
+
+
+# =============================================================================
+
+# 5. 決定事項・アイデア・ポリシー
+
+# =============================================================================
+
+
+
+:Decision_ProgramBooklet a gr:Decision ; s:name "プログラム冊子の配布有無"@ja ; s:description "物理冊子かデジタル提供かを検討中。本番2週間前に決定。"@ja ; s:deadline "2025-09-05"^^xsd:date ; gr:status :statusAmber .
+
+:Decision_AdoptPythonWorkflow a gr:Decision ; s:name "ナレッジ更新のPythonスクリプト運用方針"@ja ; s:description "今後のナレッジ更新は、安全性と効率性を高めるため、専用のPythonスクリプト(:Tool_KnowledgeUpdaterScript)を用いて行う。"@ja .
+
+:Idea_PublishScores a gr:Idea ; s:name "楽譜出版アイデア"@ja ; s:description "使用した編曲譜の後日出版を検討。編曲家からはイベントに合わせた販売は間に合わないとの連絡あり。"@ja ; gr:status :statusWait .
+
+:Idea_AfterEvent a gr:Idea ; s:name "翌日オフ会『思い出振り返り』トーク＆ライブ（ハイブリッド）"@ja ; s:description "実施したいが、リソース不足が懸念。"@ja ; gr:status :statusAmber .
+
+:Policy_PriorityEntrance a gr:Policy ; s:name "メンバーシップ優先入場ポリシー"@ja ; s:description "高価格のサブチケットを作成し、会員にはクーポンで通常価格を提供。当日は券種で優先入場対象者を判別。開場15分前後の見込みだが、当日の様子を見て判断。"@ja .
+
+:Policy_Merchandise a gr:Policy ; s:name "物品販売ポリシー"@ja ; s:description "手数料は売上の5%。21:30までに精算完了必須。既存グッズの販売を検討中。"@ja .
+
+
+
+
+
+# =============================================================================
+
+# 6. プログラム最終版（2025-08-18確定）
+
+# =============================================================================
+
+
+
+:Event_GraduationConcert gr:hasSegment
+
+:Seg01_Glazunov, :Seg02_Burlesque, :Seg03_Jupiter, :Seg04_Libertango,
+
+:Seg05_KazokuGame, :Seg06_SakuraNoUta, :Seg07_Intermission,
+
+:Seg08_ArmenianDances, :Seg09_IrishFantasy, :Seg10_YukkiTalk,
+
+:Seg11_GreenSerenade, :Seg12_Takarajima, :Seg13_GreenBallad,
+
+:Seg14_GreenRagtime, :Seg15_CurtainCall .
+
+
+
+:Seg01_Glazunov a gr:ConcertSegment ; s:name "グラズノフ 四重奏 第1楽章"@ja ; s:position 1 .
+
+:Seg02_Burlesque a gr:ConcertSegment ; s:name "バーレスク"@ja ; s:position 2 .
+
+:Seg03_Jupiter a gr:ConcertSegment ; s:name "木星のファンタジー"@ja ; s:position 3 .
+
+:Seg04_Libertango a gr:ConcertSegment ; s:name "リベルタンゴ"@ja ; s:position 4 .
+
+:Seg05_KazokuGame a gr:ConcertSegment ; s:name "家族ゲーム"@ja ; s:position 5 .
+
+:Seg06_SakuraNoUta a gr:ConcertSegment ; s:name "さくらの歌（五重奏）"@ja ; s:position 6 .
+
+:Seg07_Intermission a gr:Interval ; s:name "休憩"@ja ; s:position 7 .
+
+:Seg08_ArmenianDances a gr:ConcertSegment ; s:name "アルメニアンダンス・パート1"@ja ; s:position 8 .
+
+:Seg09_IrishFantasy a gr:ConcertSegment ; s:name "3つのアイルランド民謡によるファンタジー（委嘱初演）"@ja ; s:position 9 .
+
+:Seg10_YukkiTalk a gr:Narration ; s:name "MC: ゆっきーフリートーク"@ja ; s:position 10 .
+
+:Seg11_GreenSerenade a gr:ConcertSegment ; s:name "グリーンセレナーデ"@ja ; s:position 11 .
+
+:Seg12_Takarajima a gr:ConcertSegment ; s:name "宝島"@ja ; s:position 12 .
+
+:Seg13_GreenBallad a gr:ConcertSegment ; s:name "グリーンバラード"@ja ; s:position 13 .
+
+:Seg14_GreenRagtime a gr:ConcertSegment ; s:name "グリーンラグタイム"@ja ; s:position 14 .
+
+:Seg15_CurtainCall a gr:CurtainCall ; s:name "カーテンコール"@ja ; s:position 15 .
+
+
+
+
+
+# =============================================================================
+
+# 7. タスクリスト (To-Do List - FULL VERSION)
+
+# =============================================================================
+
+
+
+# --- A. 企画・全体管理 ---
+
+:Task_CreateMasterSchedule a gr:Task ; s:name "全体マスタースケジュール作成" ; gr:assignedTo :PM_User ; gr:status :statusRed .
+
+:Task_CreateRiskSheet a gr:Task ; s:name "リスク管理表作成・潜在リスク洗い出し" ; gr:assignedTo :PM_User ; gr:status :statusRed .
+
+:Task_PlanMilestoneReview a gr:Task ; s:name "中間目標達成度レビュー会議計画" ; gr:assignedTo :PM_User ; gr:status :statusRed .
+
+:Task_DraftDaySchedule a gr:Task ; s:name "当日タイムスケジュール（全体）ドラフト作成" ; gr:assignedTo :PM_User ; gr:status :statusGreen .
+
+
+
+# --- B. 広報・マーケティング ---
+
+:Task_CreateSnsCalendar a gr:Task ; s:name "SNS投稿計画カレンダー作成" ; gr:assignedTo :PM_User ; gr:status :statusRed .
+
+:Task_CreateGuestVideo a gr:Task ; s:name "ゲスト動画制作・公開" ; gr:assignedTo :PM_User ; gr:status :statusGreen .
+
+:Task_ProduceMosaicArt a gr:Task ; s:name "キービジュアル（モザイクアート）制作・発注" ; gr:assignedTo :PM_User ; gr:status :statusGreen .
+
+:Task_UpdateLandingPage a gr:Task ; s:name "LPにストーリー性のある曲紹介を追加" ; gr:assignedTo :PM_User ; gr:status :statusRed .
+
+:Task_ConsiderAds a gr:Task ; s:name "広告出稿検討" ; s:description "予算10万円程度。どのクリエイティブに投下するか検討中。" ; gr:assignedTo :PM_User ; gr:status :statusAmber .
+
+
+
+# --- C. 制作・クリエイティブ ---
+
+:Task_CreateTrailer a gr:Task ; s:name "YouTube用予告編動画制作" ; s:description "まず1本作成済み。9/9リハ素材でさらにもう1本作る予定。" ; gr:assignedTo :PM_User ; gr:status :statusAmber .
+
+:Task_PlanAudienceParticipation a gr:Task ; s:name "客席参加演出（サイリウム）計画" ; s:description "色は赤。グリーンバラードで使用。ゆっきーにはシークレット。お客様への伝え方を検討する必要がある。" ; gr:assignedTo :PM_User ; gr:status :statusRed .
+
+
+
+# --- D. プログラム・楽曲関連 ---
+
+:Task_DistributeScores a gr:Task ; s:name "譜面配布" ; gr:assignedTo :PM_User ; gr:status :statusGreen .
+
+
+
+# --- E. 出演者・スタッフ関連 ---
+
+:Task_CreateRehearsalSchedule a gr:Task ; s:name "詳細リハーサル進行表作成" ; gr:assignedTo :PM_User ; gr:status :statusGreen .
+
+:Task_CreateOperationManual a gr:Task ; s:name "当日運営マニュアル作成" ; gr:assignedTo :PM_User ; gr:status :statusRed .
+
+:Task_PrepareForImadaMtg a gr:Task ; s:name "今田くん（ステマネ）MTG準備" ; s:deadline "2025-08-31"^^xsd:date ; gr:assignedTo :PM_User ; gr:status :statusAmber . # 優先度を下げたためAmberに変更
+
+:Task_AssignDressingRooms a gr:Task ; s:name "楽屋割り当て" ; gr:assignedTo :PM_User ; gr:status :statusGreen .
+
+
+
+# --- F. 会場・運営関連 ---
+
+:Task_CreateStagePlot a gr:Task ; s:name "舞台セッティング図作成" ; s:description "完了済みだが、打楽器の位置は変更の可能性あり。" ; gr:assignedTo :PM_User ; gr:status :statusAmber .
+
+:Task_Check_PanelInstallation a gr:Task ; s:name "ロビーパネル設置方法確認" ; s:description "使用可能なものは確認済み。詳細はリハーサルか当日に確認。" ; gr:assignedTo :PM_User ; gr:status :statusGreen .
+
+
+
+# --- G. 予算・経理関連 ---
+
+:Task_CreateBudgetSheet a gr:Task ; s:name "予算管理シート作成" ; gr:assignedTo :PM_User ; gr:status :statusGreen .
+
+:Task_UpdateBudget a gr:Task ; s:name "予算の変動を反映" ; s:description "編曲料13万円への増額を反映。"@ja ; gr:assignedTo :PM_User ; gr:status :statusGreen .
+
+
+
+# --- H. 当日運営計画 ---
+
+:Task_FinalizeDaySheet a gr:Task ; s:name "当日のタスクリストと担当者を盛り込んだ進行表を最終化する" ; s:description "リハーサルと本番のタイムテーブルに、駐車場利用の詳細な時間も記載する。" ; gr:assignedTo :PM_User ; gr:status :statusRed .
+
+
+
+# --- I. 顧客体験 ---
+
+:Task_PlanDigitalBouquet a gr:Task ; s:name "デジタル花束企画の実施要項を策定する" ; s:description "メッセージ展示の方法（ロビーの花束か、舞台上の花か）を決定する。" ; gr:assignedTo :PM_User ; gr:status :statusRed .
+
+
+
+# --- J. その他 ---
+
+:Task_PlanAfterEventDetails a gr:Task ; s:name "翌日イベントの詳細計画を策定する" ; s:description "企画シートに基づき、使用する動画の選定、会場探し、技術スタッフとの連携などを具体的に進める。" ; gr:assignedTo :PM_User ; gr:status :statusRed .
+
+
+
+# =============================================================================
+
+# 8. ドキュメント・ツール (Documents & Tools)
+
+# =============================================================================
+
+
+
+:Tool_Asana a gr:Tool ; s:name "Asana"@ja .
+
+:Tool_GoogleDrive a gr:Tool ; s:name "Google Drive"@ja .
+
+:Tool_KnowledgeUpdaterScript a gr:Tool ; s:name "【安全版】ナレッジ更新用Pythonスクリプト v2.0"@ja .
+
+:Doc_RehearsalTimetable a gr:Document ; s:name "【9/9リハーサル】香盤表（仮）"@ja .
+
+:Doc_ConcertDayTimetable a gr:Document ; s:name "【本番当日】香盤表（仮）"@ja .
+
+
+
+# =============================================================================
+
+# 9. 視聴者タッチポイント計画 (Touchpoint Plan)
+
+# =============================================================================
+
+
+
+# --- SNS Touchpoints ---
+
+:Touchpoint_SNS_20250830 a gr:CommunicationEvent ; s:name "プログラム公開動画 投稿"@ja ; s:startDate "2025-08-30"^^xsd:date ; gr:channel "SNS (X, Instagram, YouTube Community)"@ja ; gr:assignedTo :Performer_Asumin .
+
+:Touchpoint_SNS_20250831 a gr:CommunicationEvent ; s:name "インタビュー動画 投稿"@ja ; s:startDate "2025-08-31"^^xsd:date ; gr:channel "SNS"@ja ; gr:assignedTo :Performer_Asumin .
+
+:Touchpoint_SNS_20250901 a gr:CommunicationEvent ; s:name "LP企画「今日のゲストは誰だった？」投稿"@ja ; s:startDate "2025-09-01"^^xsd:date ; gr:channel "SNS"@ja ; gr:assignedTo :Performer_Asumin .
+
+:Touchpoint_SNS_20250906 a gr:CommunicationEvent ; s:name "ゆっきー宣伝生配信"@ja ; s:startDate "2025-09-06"^^xsd:date ; gr:channel "SNS & YouTube Live"@ja ; gr:assignedTo :Performer_Asumin .
+
+
+
+# --- Video Touchpoints ---
+
+:Touchpoint_Video_20250901 a gr:CommunicationEvent ; s:name "予告動画 公開"@ja ; s:startDate "2025-09-01"^^xsd:date ; gr:channel "YouTube"@ja .
+
+:Touchpoint_Video_20250908 a gr:CommunicationEvent ; s:name "ゆっきー宣伝生配信"@ja ; s:startDate "2025-09-08"^^xsd:date ; gr:channel "YouTube Live"@ja .
+
+:Touchpoint_Video_20250915 a gr:CommunicationEvent ; s:name "ゆっきー卒コン生配信"@ja ; s:startDate "2025-09-15"^^xsd:date ; gr:channel "YouTube Live"@ja . 
