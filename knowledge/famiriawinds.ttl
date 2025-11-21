@@ -300,3 +300,9 @@ ex:MeetingProposal a ex:Action ;
     ex:detail "目的: 楽譜の扱い（権利と工数）に関する認識（スキーマ）のすり合わせ。"@ja ;
     ex:detail "目的: 出演料や動画配信などビジネス面の確認。"@ja ;
     ex:detail "候補日時: 10/27(月), 10/28(火), 10/29(水)"@ja .
+
+ex:FamiriaGoal a ex:Goal ;
+    rdfs:label "ファミリア活動の定量目標"@ja ;
+    ex:includes ex:Goal_GuaranteedPayment, ex:Goal_3RoundCommunication,
+                ex:Goal_3Rehearsals, ex:Goal_24hReply, ex:Goal_Archive100 ;
+    ex:comment "持続的・効率的な音楽活動を維持するための実務的ゴール"@ja .
